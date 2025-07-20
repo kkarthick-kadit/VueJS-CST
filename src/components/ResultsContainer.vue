@@ -80,6 +80,7 @@ const getLoadingMessage = () => {
 };
 </script>
 
+
 <style scoped>
 .results-container {
   margin-top: 30px;
@@ -96,29 +97,29 @@ const getLoadingMessage = () => {
 
 .results-count {
   font-size: 1.1rem;
-  color: #6c757d;
+  color: var(--secondary-grey);
 }
 
 .result-type {
   font-size: 0.9rem;
-  color: #007bff;
-  background-color: #e7f3ff;
+  color: var(--primary-blue);
+  background-color: rgba(0, 53, 90, 0.1);
   padding: 4px 8px;
   border-radius: 4px;
 }
 
-.result-type.motif_library { background-color: #f3e8ff; color: #6f42c1; }
-.result-type.motif_neo { background-color: #fff3e0; color: #f57c00; }
-.result-type.substrate { background-color: #ffeaea; color: #dc3545; }
-.result-type.modification_protein { background-color: #e8f5e8; color: #28a745; }
-.result-type.QnA { background-color: #e3f2fd; color: #1976d2; }
+.result-type.motif_library { background-color: rgba(0, 53, 90, 0.1); color: var(--primary-blue); }
+.result-type.motif_neo { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
+.result-type.substrate { background-color:  rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
+.result-type.modification_protein { background-color: rgba(0, 105, 134, 0.1); color: var(--accent-blue); }
+.result-type.QnA { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
 
 .modification-info {
-  background: #f8f9fa;
+  background: var(--light-grey);
   padding: 12px;
   border-radius: 6px;
   margin-bottom: 20px;
-  border-left: 4px solid #28a745;
+  border-left: 4px solid var(--accent-blue);
 }
 
 .results-grid {
@@ -128,8 +129,8 @@ const getLoadingMessage = () => {
 }
 
 .result-card {
-  background: white;
-  border: 1px solid #e9ecef;
+  background: var(--white);
+  border: 1px solid var(--border-grey);
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -138,22 +139,22 @@ const getLoadingMessage = () => {
 .no-results,
 .loading {
   text-align: center;
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 1.1rem;
   margin-top: 40px;
   padding: 40px;
-  background: white;
+  background: var(--white);
   border-radius: 8px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-grey);
 }
 
 .error-message {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--link-red);
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 20px;
-  border: 1px solid #f5c6cb;
+  border: 1px solid var(--link-red);
 }
 
 @media (max-width: 768px) {

@@ -74,20 +74,55 @@ export function useSearch() {
       if (response.type === 'Modification_suggestions') {
         // Handle modification suggestions
         if (Array.isArray(response.results)) {
-          suggestions.push(...response.results);
+          suggestions.push(...response.results.map(item => ({
+            ...item,
+            type: 'suggestion' as const
+          })));
         }
       } else if (response.type === 'suggestions') {
-        // Handle gene symbol and name suggestions
+        // Handle gene symbol and name suggestions with headers
         const results = response.results as {
           "Gene Symbol Suggestions"?: AutocompleteSuggestion[];
           "Gene Name Suggestions"?: AutocompleteSuggestion[];
+          "Alias Symbol Suggestions"?: AutocompleteSuggestion[];
+          'Group Name Suggestions'?: AutocompleteSuggestion[];
+          'Previous Symbol Suggestions'?: AutocompleteSuggestion[];
         };
         
-        if (results["Gene Symbol Suggestions"]) {
-          suggestions.push(...results["Gene Symbol Suggestions"]);
+        // Add Gene Symbol Suggestions with header
+        if (results["Gene Symbol Suggestions"]?.length) {
+          suggestions.push({ text: 'Gene Symbols', type: 'header' });
+          suggestions.push(...results["Gene Symbol Suggestions"].map(item => ({
+            ...item,
+            type: 'suggestion' as const
+          })));
         }
-        if (results["Gene Name Suggestions"]) {
-          suggestions.push(...results["Gene Name Suggestions"]);
+        
+        // Add Gene Name Suggestions with header
+        if (results["Gene Name Suggestions"]?.length) {
+          suggestions.push({ text: 'Gene Names', type: 'header' });
+          suggestions.push(...results["Gene Name Suggestions"].map(item => ({
+            ...item,
+            type: 'suggestion' as const
+          })));
+        }
+        
+        // Add Alias Symbol Suggestions with header
+        if (results["Alias Symbol Suggestions"]?.length) {
+          suggestions.push({ text: 'Alias Symbols', type: 'header' });
+          suggestions.push(...results["Alias Symbol Suggestions"].map(item => ({
+            ...item,
+            type: 'suggestion' as const
+          })));
+        }
+        
+        // Add Previous Symbol Suggestions with header
+        if (results["Previous Symbol Suggestions"]?.length) {
+          suggestions.push({ text: 'Previous Symbols', type: 'header' });
+          suggestions.push(...results["Previous Symbol Suggestions"].map(item => ({
+            ...item,
+            type: 'suggestion' as const
+          })));
         }
       }
       

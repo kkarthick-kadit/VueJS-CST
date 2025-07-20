@@ -43,8 +43,8 @@ const handleClick = (suggestion: AutocompleteSuggestion) => {
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
-  border: 1px solid #e9ecef;
+  background: var(--white);
+  border: 1px solid var(--border-grey);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -55,16 +55,16 @@ const handleClick = (suggestion: AutocompleteSuggestion) => {
 .autocomplete-item {
   padding: 8px 12px;
   cursor: pointer;
-  border-bottom: 1px solid #f8f9fa;
+  border-bottom: 1px solid var(--light-grey);
   font-size: 14px;
 }
 
 .autocomplete-item:hover {
-  background-color: #f8f9fa;
+  background-color: var(--light-grey);
 }
 
 .autocomplete-item.header {
-  background-color: #e9ecef;
+  background-color: var(--border-grey);
   font-weight: 600;
   cursor: default;
   padding: 6px 12px;
@@ -73,6 +73,6 @@ const handleClick = (suggestion: AutocompleteSuggestion) => {
 }
 
 .autocomplete-item.header:hover {
-  background-color: #e9ecef;
+  background-color: var(--border-grey);
 }
 </style>

@@ -2,27 +2,55 @@
   <div>
     <div class="result-title">
       <div class="result-icon substrate"></div>
-      Kinase Substrates
-      <span v-if="result.Family">({{ result.Family }} Family)</span>
+      Substrate Sites
+      <!-- <span v-if="result.Family && result.Family !== 'None'">({{ result.Family }} Family)</span> -->
     </div>
     
-    <div v-if="result.Proteins && result.Proteins.length > 0" class="substrate-list">
+    <div v-if="result.Sites && result.Sites.length > 0" class="substrate-list">
       <div
-        v-for="(protein, index) in result.Proteins"
+        v-for="(site, index) in result.Sites"
         :key="index"
         class="substrate-item"
       >
         <div class="result-content">
           <div class="result-field">
-            <div class="result-field-label">Substrate</div>
-            <div class="result-field-value">{{ protein.Protein }}</div>
+            <div class="result-field-label">Gene Symbol</div>
+            <div class="result-field-value">{{ site.SubstrateGeneSymbol }}</div>
           </div>
           
-          <div v-if="protein.Link" class="result-field">
-            <div class="result-field-label">PhosphoSite</div>
+          <div class="result-field">
+            <div class="result-field-label">Site</div>
+            <div class="result-field-value">{{ site.Residue }}{{ site.ResidueNumber }}</div>
+          </div>
+          
+          <div class="result-field">
+            <div class="result-field-label">N-mer Sequence</div>
             <div class="result-field-value">
-              <a :href="protein.Link" target="_blank" class="result-link">
-                View Details <span>↗</span>
+              <code class="nmer-sequence">{{ site.Nmer }}</code>
+            </div>
+          </div>
+          
+          <div class="result-field">
+            <div class="result-field-label">Evidence</div>
+            <div class="result-field-value">
+              <span class="evidence-badge">{{ site.EvidenceType }}</span>
+            </div>
+          </div>
+          
+          <div class="result-field">
+            <div class="result-field-label">UniProt</div>
+            <div class="result-field-value">
+              <a :href="`https://www.uniprot.org/uniprotkb/${site.SubstrateUniProtID}/entry`" target="_blank" class="result-link">
+                {{ site.SubstrateUniProtID }} <span>↗</span>
+              </a>
+            </div>
+          </div>
+          
+          <div class="result-field">
+            <div class="result-field-label">Modification Site</div>
+            <div class="result-field-value">
+              <a :href="site.ModSiteLink" target="_blank" class="result-link">
+                View Site Details <span>↗</span>
               </a>
             </div>
           </div>
@@ -31,7 +59,7 @@
     </div>
     
     <div v-else class="result-content">
-      <div class="result-field-value">No substrates found</div>
+      <div class="result-field-value">No substrate sites found</div>
     </div>
   </div>
 </template>
@@ -64,7 +92,7 @@ defineProps<Props>();
 }
 
 .result-icon.substrate {
-  background-color: #dc3545;
+  background-color:rgba(0, 105, 134, 0.2);
 }
 
 .substrate-list {
@@ -119,6 +147,25 @@ defineProps<Props>();
 
 .result-link:hover {
   text-decoration: underline;
+}
+
+.nmer-sequence {
+  background-color: #f8f9fa;
+  color: #495057;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.evidence-badge {
+  background-color: #e8f4fd;
+  color: #0066cc;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {

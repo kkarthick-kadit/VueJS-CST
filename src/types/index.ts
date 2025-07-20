@@ -17,8 +17,7 @@ export interface SearchResult {
   score?: number;
   
   // Substrate results
-  Family?: string;
-  Proteins?: SubstrateProtein[];
+  Sites?: SubstrateSite[];
   
   // Motif library results
   family?: string;
@@ -51,15 +50,33 @@ export interface SubstrateProtein {
 export interface AutocompleteSuggestion {
   text: string;
   suggester?: string;
+  type?: 'header' | 'suggestion'; // Added type property
 }
 
 export interface AutocompleteResponse {
   results: AutocompleteSuggestion[] | {
     "Gene Symbol Suggestions"?: AutocompleteSuggestion[];
     "Gene Name Suggestions"?: AutocompleteSuggestion[];
+    "Alias Symbol Suggestions"?: AutocompleteSuggestion[];
+    'Group Name Suggestions'?: AutocompleteSuggestion[];
+    'Previous Symbol Suggestions'?: AutocompleteSuggestion[];
   };
   type: 'Modification_suggestions' | 'suggestions';
 }
+
+
+export interface SubstrateSite {
+  SubstrateGeneSymbol: string;
+  SubstrateUniProtID: string;
+  Residue: string;
+  ResidueNumber: number;
+  Nmer: string;
+  PositionInNmer: number;
+  EvidenceType: string;
+  ModSiteLink: string;
+  Link: string;
+}
+
 
 export interface SearchResponse {
   results: SearchResult[];

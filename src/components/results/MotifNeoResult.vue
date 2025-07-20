@@ -50,11 +50,12 @@ interface Props {
 defineProps<Props>();
 </script>
 
+
 <style scoped>
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -68,7 +69,7 @@ defineProps<Props>();
 }
 
 .result-icon.motif-neo {
-  background-color: #f57c00;
+  background-color: var(--secondary-blue);
 }
 
 .result-content {
@@ -86,20 +87,20 @@ defineProps<Props>();
 
 .result-field-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .result-field-value {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 0.95rem;
 }
 
 .method-badge {
-  background-color: #fff3e0;
-  color: #f57c00;
+  background-color: rgba(90, 150, 189, 0.2);
+  color: var(--secondary-blue);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.8rem;
@@ -107,7 +108,7 @@ defineProps<Props>();
 }
 
 .result-link {
-  color: #007bff;
+  color: var(--link-red);
   text-decoration: none;
   display: inline-flex;
   align-items: center;

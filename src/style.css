@@ -4,13 +4,42 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Primary Brand Color */
+  --primary-blue: #00355a;
+  
+  /* Secondary Colors */
+  --secondary-blue: #5a95bd;
+  --secondary-grey: #afafaf;
+  
+  /* Accent Colors */
+  --accent-blue: #006986;
+  
+  /* Link Color */
+  --link-red: #dc3545;
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --light-grey: #f8f9fa;
+  --border-grey: #e9ecef;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: var(--light-grey);
+  color: var(--primary-blue);
   line-height: 1.6;
 }
 
 #app {
   min-height: 100vh;
+}
+
+a {
+  color: var(--link-red);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

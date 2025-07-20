@@ -75,11 +75,12 @@ interface Props {
 defineProps<Props>();
 </script>
 
+
 <style scoped>
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -93,7 +94,7 @@ defineProps<Props>();
 }
 
 .result-icon.modifications {
-  background-color: #28a745;
+  background-color: var(--accent-blue);
 }
 
 .result-content {
@@ -111,20 +112,20 @@ defineProps<Props>();
 
 .result-field-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .result-field-value {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 0.95rem;
 }
 
 .organism-highlight {
-  background-color: #e8f4fd;
-  color: #0066cc;
+  background-color: rgba(90, 150, 189, 0.2);
+  color: var(--secondary-blue);
   padding: 2px 8px;
   border-radius: 4px;
   font-weight: 500;
@@ -132,8 +133,8 @@ defineProps<Props>();
 }
 
 .modification-badge {
-  background-color: #e8f5e8;
-  color: #28a745;
+  background-color: rgba(0, 105, 134, 0.2);
+  color: var(--accent-blue);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.8rem;
@@ -141,8 +142,8 @@ defineProps<Props>();
 }
 
 .badge-success {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: rgba(0, 105, 134, 0.2);
+  color: var(--accent-blue);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.8rem;
@@ -150,8 +151,8 @@ defineProps<Props>();
 }
 
 .motif-code {
-  background-color: #f8f9fa;
-  color: #495057;
+  background-color: var(--light-grey);
+  color: var(--primary-blue);
   padding: 4px 8px;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
@@ -159,7 +160,7 @@ defineProps<Props>();
 }
 
 .result-link {
-  color: #007bff;
+  color: var(--link-red);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -173,18 +174,18 @@ defineProps<Props>();
 .synonym-section {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid var(--border-grey);
 }
 
 .synonym-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
 .synonym-text {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 0.9rem;
   line-height: 1.4;
 }

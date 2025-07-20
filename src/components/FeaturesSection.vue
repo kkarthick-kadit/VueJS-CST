@@ -64,7 +64,7 @@
 
 <style scoped>
 .features-section {
-  background: white;
+  background: var(--white);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 30px;
@@ -79,20 +79,20 @@
 
 .feature-card {
   padding: 12px;
-  border-left: 4px solid #dee2e6;
-  background: #f8f9fa;
+  border-left: 4px solid var(--border-grey);
+  background: var(--light-grey);
   border-radius: 8px;
 }
 
-.feature-card.protein { border-left-color: #007bff; }
-.feature-card.modification { border-left-color: #28a745; }
-.feature-card.ptm { border-left-color: #ffc107; }
-.feature-card.substrate { border-left-color: #dc3545; }
-.feature-card.motif { border-left-color: #6f42c1; }
-.feature-card.context { border-left-color: #17a2b8; }
+.feature-card.protein { border-left-color: var(--primary-blue); }
+.feature-card.modification { border-left-color: var(--accent-blue); }
+.feature-card.ptm { border-left-color: var(--secondary-blue); }
+.feature-card.substrate { border-left-color: var(--secondary-blue); }
+.feature-card.motif { border-left-color: var(--primary-blue); }
+.feature-card.context { border-left-color: var(--accent-blue); }
 
 .feature-card h3 {
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 8px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -105,7 +105,7 @@
 
 .feature-list li {
   margin-bottom: 4px;
-  color: #495057;
+  color: var(--secondary-grey);
   padding-left: 20px;
   position: relative;
   font-size: 0.8rem;
@@ -114,7 +114,7 @@
 
 .feature-list li:before {
   content: "•";
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-weight: bold;
   position: absolute;
   left: 0;

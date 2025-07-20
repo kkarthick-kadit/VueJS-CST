@@ -25,7 +25,7 @@ defineProps<Props>();
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -39,18 +39,18 @@ defineProps<Props>();
 }
 
 .result-icon.qna {
-  background-color: #1976d2;
+  background-color: var(--secondary-blue);
 }
 
 .qna-content {
-  background: #f8f9fa;
-  border-left: 4px solid #1976d2;
+  background: var(--light-grey);
+  border-left: 4px solid var(--secondary-blue);
   padding: 16px;
   border-radius: 6px;
 }
 
 .qna-content p {
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;

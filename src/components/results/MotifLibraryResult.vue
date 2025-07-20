@@ -77,7 +77,7 @@ const getScoreClass = (score: number): string => {
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ const getScoreClass = (score: number): string => {
 }
 
 .result-icon.motif-library {
-  background-color: #6f42c1;
+  background-color: var(--primary-blue);
 }
 
 .result-content {
@@ -109,32 +109,32 @@ const getScoreClass = (score: number): string => {
 
 .result-field-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .result-field-value {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 0.95rem;
 }
 
 .score-badge {
-  background-color: #f8f9fa;
-  color: #495057;
+  background-color: var(--light-grey);
+  color: var(--primary-blue);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 500;
 }
 
-.score-badge.high { background-color: #d4edda; color: #155724; }
-.score-badge.medium { background-color: #fff3cd; color: #856404; }
-.score-badge.low { background-color: #f8d7da; color: #721c24; }
+.score-badge.high { background-color: rgba(0, 105, 134, 0.2); color: var(--accent-blue); }
+.score-badge.medium { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
+.score-badge.low { background-color: rgba(220, 53, 69, 0.1); color: var(--link-red); }
 
 .result-link {
-  color: #007bff;
+  color: var(--link-red);
   text-decoration: none;
   display: inline-flex;
   align-items: center;

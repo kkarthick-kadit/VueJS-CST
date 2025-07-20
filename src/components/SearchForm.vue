@@ -135,7 +135,7 @@ const selectSuggestion = (suggestion: string, suggester?: string) => {
 .search-input {
   flex: 1;
   padding: 12px 16px;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border-grey);
   border-radius: 8px;
   font-size: 16px;
   transition: border-color 0.3s ease;
@@ -143,13 +143,13 @@ const selectSuggestion = (suggestion: string, suggester?: string) => {
 
 .search-input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--accent-blue);
 }
 
 .search-btn {
   padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-blue);
+  color: var(--white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -158,11 +158,11 @@ const selectSuggestion = (suggestion: string, suggester?: string) => {
 }
 
 .search-btn:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-blue);
 }
 
 .search-btn:disabled {
-  background-color: #6c757d;
+  background-color: var(--secondary-grey);
   cursor: not-allowed;
 }
 
@@ -175,13 +175,13 @@ const selectSuggestion = (suggestion: string, suggester?: string) => {
 }
 
 .search-options label {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 14px;
 }
 
 .search-options select {
   padding: 6px 12px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-grey);
   border-radius: 4px;
   font-size: 14px;
 }

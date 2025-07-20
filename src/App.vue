@@ -89,14 +89,14 @@ onUnmounted(() => {
 }
 
 .header h1 {
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 10px;
   font-size: 2.5rem;
   font-weight: 600;
 }
 
 .header p {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 1.1rem;
 }
 

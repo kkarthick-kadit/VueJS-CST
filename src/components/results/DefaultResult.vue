@@ -25,7 +25,7 @@ defineProps<Props>();
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -39,12 +39,12 @@ defineProps<Props>();
 }
 
 .result-icon.default {
-  background-color: #6c757d;
+  background-color: var(--secondary-grey);
 }
 
 .result-content {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  background: var(--light-grey);
+  border: 1px solid var(--border-grey);
   border-radius: 6px;
   padding: 12px;
 }
@@ -52,7 +52,7 @@ defineProps<Props>();
 .result-content pre {
   margin: 0;
   font-size: 0.85rem;
-  color: #495057;
+  color: var(--primary-blue);
   white-space: pre-wrap;
   word-break: break-word;
 }

@@ -69,11 +69,12 @@ const getScoreClass = (score: number): string => {
 };
 </script>
 
+
 <style scoped>
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--primary-blue);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -87,7 +88,7 @@ const getScoreClass = (score: number): string => {
 }
 
 .result-icon.protein {
-  background-color: #007bff;
+  background-color: var(--primary-blue);
 }
 
 .result-content {
@@ -105,20 +106,20 @@ const getScoreClass = (score: number): string => {
 
 .result-field-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .result-field-value {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 0.95rem;
 }
 
 .organism-highlight {
-  background-color: #e8f4fd;
-  color: #0066cc;
+  background-color: rgba(90, 150, 189, 0.2);
+  color: var(--secondary-blue);
   padding: 2px 8px;
   border-radius: 4px;
   font-weight: 500;
@@ -126,33 +127,33 @@ const getScoreClass = (score: number): string => {
 }
 
 .score-badge {
-  background-color: #f8f9fa;
-  color: #495057;
+  background-color: var(--light-grey);
+  color: var(--primary-blue);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 500;
 }
 
-.score-badge.high { background-color: #d4edda; color: #155724; }
-.score-badge.medium { background-color: #fff3cd; color: #856404; }
-.score-badge.low { background-color: #f8d7da; color: #721c24; }
+.score-badge.high { background-color: rgba(0, 105, 134, 0.2); color: var(--accent-blue); }
+.score-badge.medium { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
+.score-badge.low { background-color: rgba(220, 53, 69, 0.1); color: var(--link-red); }
 
 .synonym-section {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid var(--border-grey);
 }
 
 .synonym-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--primary-blue);
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
 .synonym-text {
-  color: #6c757d;
+  color: var(--secondary-grey);
   font-size: 0.9rem;
   line-height: 1.4;
 }
