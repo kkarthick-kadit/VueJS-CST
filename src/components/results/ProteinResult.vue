@@ -1,29 +1,31 @@
 <template>
   <div>
-    <div class="result-title">
-      <div class="result-icon protein"></div>
-      {{ result.metadata?.gene || 'Protein' }}
+    <div class="result-header">
+      <div class="result-title">
+        <div class="result-icon protein"></div>
+        {{ result.metadata?.gene || 'Protein' }}
+      </div>
     </div>
     
-      <div class="result-content">
-        <div v-if="result.metadata?.Reference" class="result-field">
-          <div class="result-field-label">Reference</div>
-          <div class="result-field-value">
-            <a
-              :href="`https://www.uniprot.org/uniprotkb/${result.metadata.Reference}/entry`"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ result.metadata.Reference }}
-            </a>
-          </div>
+    <div class="result-content">
+      <div v-if="result.metadata?.Reference" class="result-field">
+        <div class="result-field-label">Reference</div>
+        <div class="result-field-value">
+          <a
+            :href="`https://www.uniprot.org/uniprotkb/${result.metadata.Reference}/entry`"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ result.metadata.Reference }}
+          </a>
         </div>
-      
+      </div>
+    
       <div v-if="result.metadata?.Gene_Symbols" class="result-field">
         <div class="result-field-label">Gene Symbol</div>
         <div class="result-field-value">{{ result.metadata.Gene_Symbols }}</div>
       </div>
-      
+
       <div v-if="result.metadata?.Organism" class="result-field">
         <div class="result-field-label">Organism</div>
         <div class="result-field-value">
@@ -36,14 +38,18 @@
         <div class="result-field-value">{{ result.metadata.Source }}</div>
       </div>
       
-      <!-- <div v-if="result.score" class="result-field">
-        <div class="result-field-label">Score</div>
+      <div class="result-field">
+        <div class="result-field-label">HGNC</div>
         <div class="result-field-value">
-          <span :class="['score-badge', getScoreClass(result.score)]">
-            {{ result.score.toFixed(4) }}
-          </span>
+          <a
+            :href="getHgncSearchUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ getHgncSearchText() }}
+          </a>
         </div>
-      </div> -->
+      </div>
     </div>
     
     <div v-if="result.synonym || result.text" class="synonym-section">
@@ -58,9 +64,22 @@ import type { SearchResult } from '../../types';
 
 interface Props {
   result: SearchResult;
+  query?: string;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const getHgncSearchUrl = (): string => {
+  const searchTerm = props.result.metadata?.Gene_Symbols || 
+                    props.result.metadata?.gene || 
+                    props.query || 
+                    '';
+  return `https://www.genenames.org/tools/search/#!/?query=${encodeURIComponent(searchTerm)}`;
+};
+
+const getHgncSearchText = (): string => {
+  return props.result.metadata?.Gene_Symbols || props.result.metadata?.gene || props.query || 'Search';
+};
 
 const getScoreClass = (score: number): string => {
   if (score > 0.8) return 'high';
@@ -69,13 +88,18 @@ const getScoreClass = (score: number): string => {
 };
 </script>
 
-
 <style scoped>
+.result-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
 .result-title {
   font-size: 1.3rem;
   font-weight: 600;
-  color: var(--primary-blue);
-  margin-bottom: 12px;
+  color: #2c3e50;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -88,7 +112,7 @@ const getScoreClass = (score: number): string => {
 }
 
 .result-icon.protein {
-  background-color: var(--primary-blue);
+  background-color: #007bff;
 }
 
 .result-content {
@@ -106,61 +130,53 @@ const getScoreClass = (score: number): string => {
 
 .result-field-label {
   font-weight: 600;
-  color: var(--primary-blue);
+  color: #495057;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .result-field-value {
-  color: var(--secondary-grey);
+  color: #6c757d;
   font-size: 0.95rem;
 }
 
+.result-field-value a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.result-field-value a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
 .organism-highlight {
-  background-color: rgba(90, 150, 189, 0.2);
-  color: var(--secondary-blue);
+  background-color: #e8f4fd;
+  color: #0066cc;
   padding: 2px 8px;
   border-radius: 4px;
   font-weight: 500;
   display: inline-block;
 }
 
-.score-badge {
-  background-color: var(--light-grey);
-  color: var(--primary-blue);
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.score-badge.high { background-color: rgba(0, 105, 134, 0.2); color: var(--accent-blue); }
-.score-badge.medium { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
-.score-badge.low { background-color: rgba(220, 53, 69, 0.1); color: var(--link-red); }
-
 .synonym-section {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid var(--border-grey);
+  border-top: 1px solid #e9ecef;
 }
 
 .synonym-label {
   font-weight: 600;
-  color: var(--primary-blue);
+  color: #495057;
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
 .synonym-text {
-  color: var(--secondary-grey);
+  color: #6c757d;
   font-size: 0.9rem;
   line-height: 1.4;
-}
-
-@media (max-width: 768px) {
-  .result-content {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

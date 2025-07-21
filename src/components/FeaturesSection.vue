@@ -6,7 +6,7 @@
         <ul class="feature-list">
           <li>Gene symbols: "ERBB1", "Akt", "EGFR"</li>
           <li>Aliases: "Protein kinase B" → "AKT"</li>
-          <li>UniProt accession numbers</li>
+  
         </ul>
       </div>
       
@@ -15,16 +15,16 @@
         <ul class="feature-list">
           <li>Use "modification" keyword with protein name</li>
           <li>Example: "p53 modification"</li>
-          <li>Returns all PTM types for the protein</li>
+          <li>Returns all PTM types for the protein and for the gene symbols that have the protein as alias</li>
         </ul>
       </div>
       
       <div class="feature-card ptm">
         <h3>PTM-Specific Query</h3>
         <ul class="feature-list">
-          <li>Site-specific queries: "S473 on AKT1"</li>
+          <li>Site-specific queries: "What is the Function of S473 on AKT"</li>
           <li>Detailed modification site data</li>
-          <li>Functional annotations</li>
+          
         </ul>
       </div>
       
@@ -32,26 +32,26 @@
         <h3>Kinase-Substrate Search</h3>
         <ul class="feature-list">
           <li>Example: "substrates of Akt1 kinase"</li>
-          <li>Curated kinase-substrate relationships</li>
-          <li>Phosphorylation site details</li>
+          <li>Curated kinase-substrate relationships and Phosphorylation site details</li>
+          <li>Returns substrate networks based on "Substrates of" Key</li>
         </ul>
       </div>
       
       <div class="feature-card motif">
         <h3>Motif & Kinase Prediction</h3>
         <ul class="feature-list">
-          <li>Sequence motifs: "ARAX*pTPQ"</li>
+          <li>Motif searches Eg: "PSVEPPLs*QETFSDL"</li>
           <li>PhosphoSite kinase predictions</li>
           <li>Confidence scores and rankings</li>
         </ul>
       </div>
       
       <div class="feature-card context">
-        <h3>Advanced Features</h3>
+        <h3>Biological Context</h3>
         <ul class="feature-list">
-          <li>Intelligent autocomplete suggestions</li>
-          <li>Multi-database integration</li>
-          <li>Export and sharing options</li>
+          <li>Eg: "What are the PTMs in breast cancer"</li>
+          <li>Pathway & disease enrichment</li>
+          <li>Supports cell line / tissue-specific queries</li>
         </ul>
       </div>
     </div>

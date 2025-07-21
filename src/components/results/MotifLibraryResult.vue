@@ -53,6 +53,22 @@
           </a>
         </div>
       </div>
+
+      <div v-if="result.uniprotId" class="result-field">
+        <div class="result-field-label">Phosphosite</div>
+        <div class="result-field-value">
+          <a
+            :href="`https://www.phosphosite.org/simpleSearchSubmitAction.action?searchStr=${result.geneName}`"
+            target="_blank"
+            class="result-link"
+          >
+            {{ result.geneName }}
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      
     </div>
   </div>
 </template>

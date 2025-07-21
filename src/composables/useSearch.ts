@@ -16,6 +16,11 @@ export function useSearch() {
   const autocompleteResults = ref<AutocompleteSuggestion[]>([]);
   const showAutocomplete = ref(false);
   const isSearching = ref(false);
+  const isAutocompleteLoading = ref(false);
+  
+  // New state for modification suggestions
+  const isModificationSearch = ref(false);
+  const detailLevel = ref<'high_level' | 'site_level'>('high_level');
   
   const resultTypeLabel = computed(() => {
     switch (resultType.value) {
@@ -43,8 +48,16 @@ export function useSearch() {
     hideAutocomplete();
     
     try {
-      const detailLevel = useDetailLevel ? 'site_level' : undefined;
-      const response = await ApiService.search(query, resultLimit.value, detailLevel);
+      let detailLevelParam: string | undefined;
+      if (isModificationSearch.value) {
+        // Always send detail level for modification searches
+        detailLevelParam = detailLevel.value;
+      } else if (useDetailLevel) {
+        // For non-modification searches, only send if explicitly requested
+        detailLevelParam = 'site_level';
+      }
+      
+      const response = await ApiService.search(query, resultLimit.value, detailLevelParam);
       
       results.value = response.results;
       resultType.value = response.result_type as ResultType;
@@ -66,6 +79,10 @@ export function useSearch() {
       hideAutocomplete();
       return;
     }
+    
+    isAutocompleteLoading.value = true;
+    showAutocomplete.value = true;
+    autocompleteResults.value = [{ text: 'Please hold on a minute, it will take some time...', type: 'loading' }];
     
     try {
       const response = await ApiService.getAutocomplete(query);
@@ -130,6 +147,8 @@ export function useSearch() {
       showAutocomplete.value = suggestions.length > 0;
     } catch (err) {
       hideAutocomplete();
+    } finally {
+      isAutocompleteLoading.value = false;
     }
   };
   
@@ -144,9 +163,12 @@ export function useSearch() {
       const modificationTypes = ['METHYLATION', 'PHOSPHORYLATION', 'ACETYLATION', 'UBIQUITYLATION', 'SUMOYLATION', 'MONO-METHYLATION', 'DI-METHYLATION', 'TRI-METHYLATION', 'O-GlcNAc'];
       const isModificationSuggestion = modificationTypes.some(type => suggestion.includes(type));
       
+      // Set modification search state
+      isModificationSearch.value = isModificationSuggestion;
+      
       if (isModificationSuggestion) {
-        // Use site_level detail for modification suggestions
-        await search(suggestion, true);
+        // Use current detail level for modification suggestions
+        await search(suggestion, detailLevel.value === 'site_level');
       } else {
         // Regular search for gene symbol/name suggestions
         await search(suggestion, false);
@@ -159,9 +181,22 @@ export function useSearch() {
     }
   };
   
+  const setDetailLevel = async (level: 'high_level' | 'site_level') => {
+    detailLevel.value = level;
+    if (isModificationSearch.value && searchQuery.value.trim()) {
+      await search(searchQuery.value, false);
+    }
+  };
+  
   const hideAutocomplete = () => {
     showAutocomplete.value = false;
     autocompleteResults.value = [];
+    isAutocompleteLoading.value = false;
+  };
+  
+  const resetModificationSearch = () => {
+    isModificationSearch.value = false;
+    detailLevel.value = 'high_level';
   };
   
   const clearResults = () => {
@@ -170,6 +205,7 @@ export function useSearch() {
     error.value = null;
     proteinName.value = '';
     modificationType.value = '';
+    resetModificationSearch();
   };
   
   return {
@@ -185,11 +221,16 @@ export function useSearch() {
     autocompleteResults,
     showAutocomplete,
     isSearching,
+    isAutocompleteLoading,
+    isModificationSearch,
+    detailLevel,
     resultTypeLabel,
     search,
     getAutocomplete,
     selectSuggestion,
+    setDetailLevel,
     hideAutocomplete,
     clearResults,
+    resetModificationSearch,
   };
 }

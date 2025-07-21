@@ -31,7 +31,7 @@ defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const handleClick = (suggestion: AutocompleteSuggestion) => {
-  if (suggestion.type !== 'header') {
+  if (suggestion.type !== 'header' && suggestion.type !== 'loading') {
     emit('select', suggestion.text, suggestion.suggester);
   }
 };
@@ -74,5 +74,18 @@ const handleClick = (suggestion: AutocompleteSuggestion) => {
 
 .autocomplete-item.header:hover {
   background-color: var(--border-grey);
+}
+
+.autocomplete-item.loading {
+  background-color: var(--light-grey);
+  color: var(--secondary-grey);
+  cursor: default;
+  padding: 8px 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+.autocomplete-item.loading:hover {
+  background-color: var(--light-grey);
 }
 </style>

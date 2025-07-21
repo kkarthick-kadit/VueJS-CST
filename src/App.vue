@@ -8,13 +8,19 @@
     <SearchForm
       v-model:searchQuery="searchQuery"
       v-model:resultLimit="resultLimit"
+      :resultType="resultType"
+      :isModificationSearch="isModificationSearch"
+      :detailLevel="detailLevel"
       :autocompleteResults="autocompleteResults"
       :showAutocomplete="showAutocomplete"
       :isLoading="isLoading"
+      :isAutocompleteLoading="isAutocompleteLoading"
       @search="search"
       @autocomplete="getAutocomplete"
       @selectSuggestion="selectSuggestion"
+      @setDetailLevel="setDetailLevel"
       @hideAutocomplete="hideAutocomplete"
+      @resetModificationSearch="resetModificationSearch"
     />
 
     <FeaturesSection />
@@ -49,14 +55,19 @@ const {
   resultLimit,
   proteinName,
   modificationType,
+  isModificationSearch,
+  detailLevel,
   autocompleteResults,
   showAutocomplete,
   isLoading,
+  isAutocompleteLoading,
   error,
   search,
   getAutocomplete,
   selectSuggestion,
+  setDetailLevel,
   hideAutocomplete,
+  resetModificationSearch,
 } = useSearch();
 
 // Handle clicking outside to hide autocomplete

@@ -54,6 +54,16 @@
               </a>
             </div>
           </div>
+
+          <div class="result-field">
+            <div class="result-field-label">CST Ref.</div>
+            <div class="result-field-value">
+              <a :href= "site.Link" target="_blank" class="result-link">
+                CST <span>↗</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

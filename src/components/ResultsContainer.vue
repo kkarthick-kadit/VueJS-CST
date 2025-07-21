@@ -13,8 +13,19 @@
         <div class="results-count">
           {{ resultCount }} result{{ resultCount !== 1 ? 's' : '' }} found for "{{ searchQuery }}"
         </div>
-        <div :class="['result-type', resultType]">
-          {{ resultTypeLabel }}
+        <div class="header-right">
+          <a
+            v-if="resultType === 'protein'"
+            :href="getHgncSearchUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="external-search-link"
+          >
+             Search from external site
+          </a>
+          <div :class="['result-type', resultType]">
+            {{ resultTypeLabel }}
+          </div>
         </div>
       </div>
       
@@ -28,7 +39,7 @@
           :key="index"
           class="result-card"
         >
-          <ProteinResult v-if="resultType === 'protein'" :result="result" />
+          <ProteinResult v-if="resultType === 'protein'" :result="result" :query="searchQuery" />
           <SubstrateResult v-else-if="resultType === 'substrate'" :result="result" />
           <MotifLibraryResult v-else-if="resultType === 'motif_library'" :result="result" />
           <MotifNeoResult v-else-if="resultType === 'motif_neo'" :result="result" />
@@ -67,19 +78,22 @@ interface Props {
   error: string | null;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const getLoadingMessage = () => {
   const messages = [
     'Searching...',
     'Fetching data...',
-    'Analyzing results...',
+    'it may take a while, please wait...',
     'Processing query...',
   ];
   return messages[Math.floor(Math.random() * messages.length)];
 };
-</script>
 
+const getHgncSearchUrl = (): string => {
+  return `https://www.genenames.org/tools/search/#!/?query=${encodeURIComponent(props.searchQuery)}`;
+};
+</script>
 
 <style scoped>
 .results-container {
@@ -97,29 +111,57 @@ const getLoadingMessage = () => {
 
 .results-count {
   font-size: 1.1rem;
-  color: var(--secondary-grey);
+  color: #6c757d;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.external-search-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border: 1px solid #0066cc;
+  border-radius: 4px;
+  background-color: #f8fbff;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.external-search-link:hover {
+  background-color: #0066cc;
+  color: white;
+  text-decoration: none;
 }
 
 .result-type {
   font-size: 0.9rem;
-  color: var(--primary-blue);
-  background-color: rgba(0, 53, 90, 0.1);
+  color: #007bff;
+  background-color: #e7f3ff;
   padding: 4px 8px;
   border-radius: 4px;
 }
 
-.result-type.motif_library { background-color: rgba(0, 53, 90, 0.1); color: var(--primary-blue); }
-.result-type.motif_neo { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
-.result-type.substrate { background-color:  rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
-.result-type.modification_protein { background-color: rgba(0, 105, 134, 0.1); color: var(--accent-blue); }
-.result-type.QnA { background-color: rgba(90, 150, 189, 0.2); color: var(--secondary-blue); }
+.result-type.motif_library { background-color: #f3e8ff; color: #6f42c1; }
+.result-type.motif_neo { background-color: #fff3e0; color: #f57c00; }
+.result-type.substrate { background-color: #ffeaea; color: #dc3545; }
+.result-type.modification_protein { background-color: #e8f5e8; color: #28a745; }
+.result-type.QnA { background-color: #e3f2fd; color: #1976d2; }
 
 .modification-info {
-  background: var(--light-grey);
+  background: #f8f9fa;
   padding: 12px;
   border-radius: 6px;
   margin-bottom: 20px;
-  border-left: 4px solid var(--accent-blue);
+  border-left: 4px solid #28a745;
 }
 
 .results-grid {
@@ -129,8 +171,8 @@ const getLoadingMessage = () => {
 }
 
 .result-card {
-  background: var(--white);
-  border: 1px solid var(--border-grey);
+  background: white;
+  border: 1px solid #e9ecef;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -139,22 +181,22 @@ const getLoadingMessage = () => {
 .no-results,
 .loading {
   text-align: center;
-  color: var(--secondary-grey);
+  color: #6c757d;
   font-size: 1.1rem;
   margin-top: 40px;
   padding: 40px;
-  background: var(--white);
+  background: white;
   border-radius: 8px;
-  border: 1px solid var(--border-grey);
+  border: 1px solid #e9ecef;
 }
 
 .error-message {
-  background-color: rgba(220, 53, 69, 0.1);
-  color: var(--link-red);
+  background-color: #f8d7da;
+  color: #721c24;
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 20px;
-  border: 1px solid var(--link-red);
+  border: 1px solid #f5c6cb;
 }
 
 @media (max-width: 768px) {
@@ -162,6 +204,12 @@ const getLoadingMessage = () => {
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
+  }
+  
+  .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 </style>

@@ -50,7 +50,7 @@ export interface SubstrateProtein {
 export interface AutocompleteSuggestion {
   text: string;
   suggester?: string;
-  type?: 'header' | 'suggestion'; // Added type property
+  type?: 'header' | 'suggestion' | 'loading'; // Added loading type
 }
 
 export interface AutocompleteResponse {
@@ -64,7 +64,6 @@ export interface AutocompleteResponse {
   type: 'Modification_suggestions' | 'suggestions';
 }
 
-
 export interface SubstrateSite {
   SubstrateGeneSymbol: string;
   SubstrateUniProtID: string;
@@ -76,7 +75,6 @@ export interface SubstrateSite {
   ModSiteLink: string;
   Link: string;
 }
-
 
 export interface SearchResponse {
   results: SearchResult[];

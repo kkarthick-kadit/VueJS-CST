@@ -22,6 +22,20 @@
         <div class="result-field-label">CST ID</div>
         <div class="result-field-value">{{ result.CstId }}</div>
       </div>
+
+      <div v-if="result.CstId" class="result-field">
+        <div class="result-field-label">Phosphosite</div>
+        <div class="result-field-value">
+          <a
+            :href="`https://www.phosphosite.org/proteinAction.action?id=${result.CstId}&showAllSites=true`"
+            target="_blank"
+            class="result-link"
+          >
+            {{ result.CstId }}
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
       
       <div v-if="result.UniprotID" class="result-field">
         <div class="result-field-label">UniProt</div>
