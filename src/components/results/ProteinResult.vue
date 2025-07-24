@@ -33,11 +33,25 @@
         </div>
       </div>
       
-      <div v-if="result.metadata?.Source" class="result-field">
+      <!-- <div v-if="result.metadata?.Source" class="result-field">
         <div class="result-field-label">Source</div>
         <div class="result-field-value">{{ result.metadata.Source }}</div>
-      </div>
+      </div> -->
       
+      <div v-if="result.metadata?.Reference" class="result-field">
+        <div class="result-field-label">CST Source</div>
+        <div class="result-field-value">
+          <a
+            :href="`https://www.phosphosite.org/proteinAction.action?id=${result.metadata.CST_ID}&showAllSites=true`"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ result.metadata.CST_ID }}
+          </a>
+        </div>
+      </div>
+
+
       <div class="result-field">
         <div class="result-field-label">HGNC</div>
         <div class="result-field-value">
