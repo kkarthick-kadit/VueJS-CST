@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 import { ApiService } from '../services/api';
-import type { SearchResult, AutocompleteSuggestion, ResultType, AutocompleteResponse } from '../types';
+import type { SearchResult, AutocompleteSuggestion, ResultType} from '../types';
 
 export function useSearch() {
   const searchQuery = ref('');
@@ -143,7 +143,7 @@ export function useSearch() {
         }
       }
       
-      autocompleteResults.value = suggestions;
+      autocompleteResults.value = suggestions
       showAutocomplete.value = suggestions.length > 0;
     } catch (err) {
       hideAutocomplete();
@@ -152,7 +152,7 @@ export function useSearch() {
     }
   };
   
-  const selectSuggestion = async (suggestion: string, suggester?: string) => {
+  const selectSuggestion = async (suggestion: string) => {
     searchQuery.value = suggestion;
     hideAutocomplete();
     isSearching.value = true;

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <div class="result-title">
       <div class="result-icon motif"></div>
@@ -144,4 +144,4 @@ const getScoreClass = (score: number): string => {
     grid-template-columns: 1fr;
   }
 }
-</style>
+</style> -->

@@ -95,11 +95,11 @@ const getHgncSearchText = (): string => {
   return props.result.metadata?.Gene_Symbols || props.result.metadata?.gene || props.query || 'Search';
 };
 
-const getScoreClass = (score: number): string => {
-  if (score > 0.8) return 'high';
-  if (score > 0.5) return 'medium';
-  return 'low';
-};
+// const getScoreClass = (score: number): string => {
+//   if (score > 0.8) return 'high';
+//   if (score > 0.5) return 'medium';
+//   return 'low';
+// };
 </script>
 
 <style scoped>
